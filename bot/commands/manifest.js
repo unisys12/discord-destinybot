@@ -15,8 +15,17 @@ function exec(cmd) {
         var manifest = yield cmd.destiny.manifest();
 
         var worldContents = JSON.stringify(manifest);
-        // Returns underfined. I am doing something stupid, I just know it!
-        console.log(worldContents.version);
+        var mobileWorldContents = JSON.parse(worldContents);
+                
+        var res = (yield get(mobileWorldContents.mobileWorldContentPaths.en))[0];
+        
+        if (res.statusCode !== 200) {
+            logger.error("failed to download mobileWorldContent: %s\n", res.statusCode);
+            throw new Error("download failure: "+res.statusMessage);
+        } else {
+            var zip = res.body;
+            // unzip the DB
+        }
 
     });
 

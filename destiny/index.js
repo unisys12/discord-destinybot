@@ -84,15 +84,6 @@ function manifest() {
     return destinyAPI(op);
 }
 
-function mobileWorldContent(uri, lang) {
-    // /common/destiny_content/sqlite/en/world_sql_content_<current_hash>.content
-
-    if (lang === 'undefined') {
-        var lang = config.language;
-    }
-    var op = util.format(uri + "/" + lang);
-    return destinyAPI(op);
-}
 
 module.exports.stats = stats;
 module.exports.search = search;
